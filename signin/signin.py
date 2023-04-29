@@ -2,6 +2,7 @@ import smtplib
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
+import re
 
 from sqlqueries import QueriesSQLite
 
@@ -30,14 +31,18 @@ class SigninWindow(BoxLayout):
 				if usuario:
 					if usuario['password']==password:
 						print(usuario['username'])
-						message = 'Se ha iniciado sesión en tu cuenta de FerreApp'
-						subject = 'Mensaje de FerreApp'
-						message = 'Subject: {}\n\n{}'.format(subject, message)
-						server = smtplib.SMTP('smtp.gmail.com', 587)
-						server.starttls()
-						server.login('ferreapp980@gmail.com', 'yhrscvmtjmnghprx')
-						server.sendmail('ferreapp980@gmail.com', usuario['username'], message.encode('utf-8'))
-						server.quit()
+						patron = r'^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$'
+						if re.match(patron, username):
+							message = 'Se ha iniciado sesión en tu cuenta de FerreApp'
+							subject = 'Mensaje de FerreApp'
+							message = 'Subject: {}\n\n{}'.format(subject, message)
+							server = smtplib.SMTP('smtp.gmail.com', 587)
+							server.starttls()
+							server.login('ferreapp980@gmail.com', 'yhrscvmtjmnghprx')
+							server.sendmail('ferreapp980@gmail.com', usuario['username'], message.encode('utf-8'))
+							server.quit()
+						else:
+							self.ids.signin_notificacion.text='Correo invalido'
 
 						self.ids.username.text=''
 						self.ids.password.text=''
@@ -57,30 +62,8 @@ class SigninWindow(BoxLayout):
 			QueriesSQLite.execute_query(connection, crear_usuario, usuario_tuple)
 			self.ids.signin_notificacion.text='Se creo primer usuario. usuario 123'
 
-	def crear_usuario(self, username, password):
-		connection = QueriesSQLite.create_connection("pdvDB.sqlite")
-		users=QueriesSQLite.execute_read_query(connection, "SELECT * from usuarios")
-		if users:
-			if username=='' or password=='':
-				self.ids.signin_notificacion.text='Falta nombre de usuario y/o contraseña'
-			else:
-				usuario={}
-				for user in users:
-					if user[0]==username:
-						usuario['nombre']=user[1]
-						usuario['username']=user[0]
-						usuario['password']=user[2]
-						usuario['tipo']=user[3]
-						break
-				if usuario:
-						self.ids.signin_notificacion.text='El usuario ya existe'
-				else:
-					usuario_tuple=(username, 'Usuario prueba', password, 'admin')
-					crear_usuario = "INSERT INTO usuarios (username, nombre, password, tipo) VALUES (?,?,?,?);"
-					QueriesSQLite.execute_query(connection, crear_usuario, usuario_tuple)
-					self.ids.signin_notificacion.text='Se creo el usuario'
-
-
+	def crear_usuario(self):
+		self.parent.parent.current='scrn_signup'
 
 class SigninApp(App):
 	def build(self):

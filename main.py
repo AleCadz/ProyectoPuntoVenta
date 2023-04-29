@@ -5,6 +5,7 @@ from sqlqueries import QueriesSQLite
 from signin.signin import SigninWindow
 from admin.admin import AdminWindow
 from ventas.ventas import VentasWindow
+from signin.signup import SignupWindow
 
 # agregado queriessqlite.create_tables()
 class MainWindow(BoxLayout):
@@ -14,9 +15,11 @@ class MainWindow(BoxLayout):
 		self.admin_widget=AdminWindow()
 		self.ventas_widget=VentasWindow(self.admin_widget.actualizar_productos)
 		self.signin_widget=SigninWindow(self.ventas_widget.poner_usuario)
+		self.signup_widget=SignupWindow(self.ventas_widget)
 		self.ids.scrn_signin.add_widget(self.signin_widget)
 		self.ids.scrn_ventas.add_widget(self.ventas_widget)
 		self.ids.scrn_admin.add_widget(self.admin_widget)
+		self.ids.scrn_signup.add_widget(self.signup_widget)
 
 class MainApp(App):
 	def build(self):

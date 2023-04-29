@@ -27,7 +27,7 @@
     # Draw a background to indicate selection
     canvas.before:
         Color:
-            rgba: hex('#C9F3EF') if self.selected else hex('#F0F0F0')
+            rgba: hex('#C9F3EF') if self.selected else hex('#EDDDD4')
         Rectangle:
             pos: self.pos
             size: self.size
@@ -56,7 +56,7 @@
     # Draw a background to indicate selection
     canvas.before:
         Color:
-            rgba: hex('#C9F3EF') if self.selected else hex('#F0F0F0')
+            rgba: hex('#C9F3EF') if self.selected else hex('#EDDDD4')
         Rectangle:
             pos: self.pos
             size: self.size
@@ -80,7 +80,7 @@
 <SelectableVentaLabel>:
 	canvas.before:
         Color:
-            rgba: hex('#C9F3EF') if self.selected else hex('#F0F0F0')
+            rgba: hex('#C9F3EF') if self.selected else hex('#EDDDD4')
         Rectangle:
             size: self.size
             pos: self.pos
@@ -112,7 +112,7 @@
 <ItemVentaLabel>:
     canvas.before:
         Color:
-            rgba: hex('#F0F0F0')
+            rgba: hex('#EDDDD4')
         Rectangle:
             size: self.size
             pos: self.pos
@@ -275,12 +275,16 @@
 			orientation: 'vertical'
 			padding: .5
 			BotonOscuro:
+				
 				text: 'Agregar Producto'
+				background_color: hex('#283D3B')
 				on_release: root.agregar_producto()
 			BotonOscuro:
+				background_color: hex('#283D3B')
 				text: 'Modificar Producto'
 				on_release: root.modificar_producto()
 			BotonOscuro:
+				background_color: hex('#283D3B')
 				text: 'Eliminar Producto'
 				on_release: root.eliminar_producto()
 
@@ -380,19 +384,24 @@
 			padding: .5
 			LabelOscuro:
 				id: notificacion
+				background_color: hex('#283D3B')
 				text: 'Datos de Ventas'
 				size_hint_x: .4
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Viendo: '
 				size_hint_x: .1
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				id: date_id
 				size_hint_x: .2
 				text: 'Hoy'
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Total: '
 				size_hint_x: .1
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				id: final_sum
 				size_hint_x: .2
 		BoxLayout:
@@ -400,21 +409,27 @@
 			spacing: .5
 			padding: .5
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: '#'
 				size_hint_x: .05
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Nombre de Cuenta'
 				size_hint_x: .2
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Productos Vendidos'
 				size_hint_x: .2
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Total'
 				size_hint_x: .15
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Hora'
 				size_hint_x: .2
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Fecha'
 				size_hint_x: .2
 		AdminRV:
@@ -433,6 +448,7 @@
 				write_tab: False
 				on_text_validate: root.cargar_venta('Date')
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: 'Rango de fechas:'
 			TextInput:
 				id: initial_date
@@ -441,6 +457,7 @@
 				write_tab: False
 				on_text_validate: root.cargar_venta('Range')
 			LabelOscuro:
+				background_color: hex('#283D3B')
 				text: '-'
 				size_hint_x: .06
 			TextInput:
@@ -450,12 +467,15 @@
 				write_tab: False
 				on_text_validate: root.cargar_venta('Range')
 			BotonOscuro:
+				background_color: hex('#283D3B')
 				text: 'Hoy'
 				on_release: root.cargar_venta('Default')
 			BotonOscuro:
+				background_color: hex('#283D3B')
 				text: 'Mas Info'
 				on_release: root.mas_info()
 			BotonOscuro:
+				background_color: hex('#283D3B')
 				text: 'Guardar en CSV'
 				on_release: root.crear_csv()
 
@@ -463,21 +483,24 @@
 <CustomDropDown>:
 	canvas.before:
 		Color:
-			rgba: hex('#393939')
+			rgba: hex('#283D3B')
 		Rectangle:
 			size: self.size
 			pos: self.pos
     Button:
+		background_color: hex('#283D3B')
         text: 'Productos'
         size_hint_y: None
         height: 44
         on_release: root.vista(self.text)
     Button:
+		background_color: hex('#283D3B')
         text: 'Usuarios'
         size_hint_y: None
         height: 44
         on_release: root.vista(self.text)
     Button:
+		background_color: hex('#283D3B')
         text: 'Ventas'
         size_hint_y: None
         height: 44
@@ -502,11 +525,13 @@
 			spacing: .2
 			BotonOscuro:
 				id: cambiar_vista
+				background_color: hex('#283D3B')
 				size_hint_x: .2
 				text: 'Cambiar Vista'
 				on_release: root.cambiar_vista()
 			Label:
 				id: mostrat_usuario
+				background_color: hex('#283D3B')
 				size_hint_x: .2
 				color: hex('#000000')
 			Label:
@@ -516,11 +541,13 @@
 				size_hint_x: .2
 			BotonOscuro:
 				id: boton_venta
+				background_color: hex('#283D3B')
 				size_hint_x: .2
 				text: 'Ir a Venta'
 				on_release: root.venta()
 			BotonOscuro:
 				id: boton_signout
+				background_color: hex('#283D3B')
 				size_hint_x: .2
 				text: 'Salir de Cuenta'
 				on_release: root.signout()
@@ -529,7 +556,7 @@
         id: vista_manager
 		canvas.before:
 			Color:
-				rgba: hex('#FFFFFF')
+				rgba: hex('#EDDDD4')
 			Rectangle:
 				size: self.size
 				pos: self.pos

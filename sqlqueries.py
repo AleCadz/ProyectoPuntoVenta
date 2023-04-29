@@ -225,6 +225,12 @@ class QueriesSQLite:
         # END;    
         # """
 
+        # vistaDeUsuarios = """
+        # CREATE VIEW vista_usuarios AS
+        # SELECT username, password
+        # FROM usuarios;
+        # """
+
         # # Creacion de triggers
         # QueriesSQLite.execute_query(connection, triggerStock, tuple()) 
         # QueriesSQLite.execute_query(connection, totalPedidos, tuple()) 
@@ -232,6 +238,7 @@ class QueriesSQLite:
         # QueriesSQLite.execute_query(connection, nuevoEnvio, tuple()) 
 
         #Creacion de tablas
+        # QueriesSQLite.execute_query(connection, vistaDeUsuarios, tuple()) 
         # QueriesSQLite.execute_query(connection, "ALTER TABLE usuarios ADD COLUMN correo TEXT;", tuple()) 
         # QueriesSQLite.execute_query(connection, tabla_productos, tuple()) 
         # QueriesSQLite.execute_query(connection, tabla_usuarios, tuple()) 

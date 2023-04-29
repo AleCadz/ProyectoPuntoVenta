@@ -1,0 +1,93 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<SignupWindow>:
+	orientation: 'vertical'
+	canvas.before:
+		Color:
+			rgba: hex('#c44536')
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	BoxLayout:
+		size_hint_y: .05
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgba: hex('#edddd4')
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		size_hint_y: .9
+		Label:
+			size_hint_x: .3
+		BoxLayout:
+			size_hint_x: .4
+			spacing: 10
+			orientation: 'vertical'
+			Label: 
+				size_hint_y: .15
+				text: 'FerreApp'
+				color: (0,0,0,1)
+			Image:
+    			source: 'signin\Logo.png'
+    			size: self.texture_size
+			Label:
+				id: signup_notificacion
+				size_hint_y: .15
+				color: (1, .2, .2, 1)
+			TextInput:
+				id: name
+				size_hint_y: .20
+				hint_text: 'Nombre'
+				multiline: False
+				write_tab: False
+				on_text_validate: root.crear_usuario(username.text, password.text, correo.text, tipoUsuario.text, self.text)
+			TextInput:
+				id: username
+				size_hint_y: .20
+				hint_text: 'Nombre de Usuario'
+				multiline: False
+				write_tab: False
+				on_text_validate: root.crear_usuario(self.text, password.text, correo.text, tipoUsuario.text, name.text)
+			TextInput:
+				id: correo
+				size_hint_y: .20
+				hint_text: 'Correo'
+				multiline: False
+				write_tab: False
+				on_text_validate: root.crear_usuario(username.text, password.text, self.text, tipoUsuario.text, name.text)
+			TextInput:
+				id: tipoUsuario
+				size_hint_y: .20
+				hint_text: 'Tipo de usuario'
+				multiline: False
+				write_tab: False
+				on_text_validate: root.crear_usuario(username.text, password.text, correo.text, self.text, tipoUsuario.text, name.text)
+			TextInput:
+				id: password
+				size_hint_y: .20
+				hint_text: 'Contraseña'
+				multiline: False
+				write_tab: False
+				password: True
+				on_text_validate: root.crear_usuario(username.text, self.text, correo.text, tipoUsuario.text, name.text)
+			Button:
+				size_hint_y: .20
+				background_normal: ''
+				background_color: hex('#772E25')
+				text: 'Registrar'
+				on_release: root.crear_usuario(username.text, password.text, correo.text, tipoUsuario.text, name.text)
+			Button:
+				size_hint_y: .20
+				background_normal: ''
+				background_color: hex('#772E25')
+				text: 'Volver'
+				on_release: root.Regresar()
+			Label:
+				size_hint_y: .4
+		Label:
+			size_hint_x: .3
+	BoxLayout:
+		size_hint_y: .05
+
+
