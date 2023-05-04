@@ -62,8 +62,15 @@ class SigninWindow(BoxLayout):
 			QueriesSQLite.execute_query(connection, crear_usuario, usuario_tuple)
 			self.ids.signin_notificacion.text='Se creo primer usuario. usuario 123'
 
+<<<<<<< HEAD
 	def crear_usuario(self):
 		self.parent.parent.current='scrn_signup'
+=======
+	def crear_usuario(self, username, password):
+		self.parent.parent.current='scrn_signup'
+
+
+>>>>>>> 8e0bd3db4b98b9a6df856d94d4a782bab4e5196d
 
 class SigninApp(App):
 	def build(self):
